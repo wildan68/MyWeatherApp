@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Weather App
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container" id="app">
+            <div class="search">
+                <input type="text" placeholder="Mau cek cuaca kota apa?" v-model="searchCity">
+                <button class="ripple" @click="searchCityBtn"><ion-icon name="search"></ion-icon></button>
+            </div>
+            <h2>{{ info.name }}, {{ info_sys.country }}</h2>
+            <div class="clouds_info">
+                <h3>Hari ini</h3>
+                <div class="clouds">
+                    <div v-for="i in info_weather">
+                        <img src="img/panas.png" v-if="i.main == 'Clear'">
+                        <img src="img/panas_berawan.png" v-if="i.main == 'Clouds'">
+                        <img src="img/hujan_badai.png" v-if="i.main == 'Thunderstorm'">
+                        <img src="img/hujan_ringan.png" v-if="i.main == 'Drizzle'">
+                        <img src="img/hujan.png" v-if="i.main == 'Rain'">
+                    </div>
+                </div>
+                <div class="desc" v-for="i in info_weather">
+                    {{ capitalize(i.description) }}
+                </div>
+                <div class="temp">
+                    {{ toInt(toCelcius(info_main.temp)) }}&deg; C
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Powered By @wldan.rzky_ | www.wildanrizky.tech
+        </div>
+    </div>
+    <script src="js/ajax.js"></script>
+    <script src="js/get_weather.js"></script>
+</body>

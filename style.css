@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    font-family: 'Exo', sans-serif;
+}
+
+body {
+    margin: 0;
+    color: #f9f9f9;
+}
+
+input[type=text] {
+    border: none;
+    outline: none;
+}
+
+button {
+    border: none;
+}
+
+.wrapper {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('img/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    width: 60%;
+    height: 60%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding: 3em;
+    position: relative;
+}
+
+.container .search {
+    display: flex;
+    width: 100%;
+}
+
+.container .search input[type=text] {
+    width: 30%;
+    height: 2em;
+    border-radius: 8px;
+    padding: 1em;
+}
+
+.container .search button {
+    margin-left: 0.5em;
+    width: 8%;
+    background-color: #0fcfff;
+    color: #f9f9f9;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.ripple:hover {
+    background: #31d6ff radial-gradient(circle, transparent 1%, #31d6ff 1%) center/15000%;
+}
+
+.ripple:active {
+    background-color: #0fcfff;
+    background-size: 100%;
+    transition: background 0s;
+}
+
+.container .container h2 {
+    line-height: 1em;
+    font-weight: 600;
+    color: #f9f9f9;
+}
+
+.clouds_info {
+    position: absolute;
+    right: 5em;
+    top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clouds_info h3 {
+    line-height: 1em;
+}
+
+.clouds_info .clouds {
+    width: 15em;
+    height: 15em;
+    overflow: hidden;
+}
+
+.clouds_info .clouds img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.clouds_info .temp {
+    font-size: 58px;
+    font-weight: 700;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 1em;
+    color: #f9f9f95d;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .container .search input[type=text] {
+        width: 80%;
+    }
+    .container .search button {
+        width: 40%;
+    }
+    .clouds_info {
+        position: initial;
+        bottom: 1em;
+        right: 0;
+    }
+    .clouds_info .clouds {
+        width: 7em;
+        height: 7em;
+        overflow: hidden;
+    }
+    .clouds_info .temp {
+        font-size: 28px;
+    }
+}

@@ -1,0 +1,19 @@
+<h2>{{ info.name }}, {{ info_sys.country }}</h2>
+<div class="clouds_info">
+    <h3>Hari ini</h3>
+    <div class="clouds">
+        <div v-for="i in info_weather">
+            <img src="img/panas.png" v-if="i.main == 'Clear'">
+            <img src="img/panas_berawan.png" v-if="i.main == 'Clouds'">
+            <img src="img/hujan_badai.png" v-if="i.main == 'Thunderstorm'">
+            <img src="img/hujan_ringan.png" v-if="i.main == 'Drizzle'">
+            <img src="img/hujan.png" v-if="i.main == 'Rain'">
+        </div>
+    </div>
+    <div class="desc" v-for="i in info_weather">
+        {{ capitalize(i.description) }}
+    </div>
+    <div class="temp">
+        {{ toInt(toCelcius(info_main.temp)) }}&deg; C
+    </div>
+</div>
