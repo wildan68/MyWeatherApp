@@ -43,6 +43,7 @@ var root = new Vue({
         }
     },
     mounted() {
+        var ip = fetch("https://checkip.amazonaws.com/").then(res => res.text()).then(data => console.log(data))
         axios
             .get('https://api.ipify.org/?format=json')
             .then(response => {
@@ -55,7 +56,7 @@ var root = new Vue({
             })
             .finally(() => this.loading = false)
         axios
-            .get('http://www.geoplugin.net/json.gp?ip=' + this.ip_me)
+            .get('http://www.geoplugin.net/json.gp?ip=' + ip)
             .then(response => {
                 this.ip_data = response.data,
                     this.getWeather(this.ip_data.geoplugin_city)
