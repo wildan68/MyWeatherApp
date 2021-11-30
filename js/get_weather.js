@@ -6,15 +6,18 @@ var root = new Vue({
         info_weather: null,
         info: null,
         loading: true,
+        load_anim: true,
         errored: false,
         searchCity: '',
         default_city: true,
         ip: null,
         ip_data: null,
         ip_me: '',
+        not_found: false,
     },
     methods: {
         getWeather(city) {
+            this.load_anim = true;
             axios
                 .get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&lang=id&appid=ea8535a0ff11a4e50f1a25f6cedfa299')
                 .then(response => {
@@ -25,9 +28,11 @@ var root = new Vue({
                 })
                 .catch(error => {
                     console.log(error)
-                    this.errored = true
+                    this.not_found = true
                 })
-                .finally(() => this.loading = false)
+                .finally(() => {
+                    this.load_anim = false
+                })
         },
         toInt(x) {
             return Math.floor(x)

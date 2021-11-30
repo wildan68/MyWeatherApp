@@ -19,6 +19,12 @@
                 <input type="text" placeholder="Mau cek cuaca kota apa?" v-model="searchCity">
                 <button class="ripple" @click="searchCityBtn"><ion-icon name="search"></ion-icon></button>
             </div>
+            <div v-if="load_anim" class="loading">
+                <img src="img/loading.svg">
+            </div>
+            <!--<div v-if="not_found" class="not-found">
+                Tidak ditemukan
+            </div> -->
             <h2>{{ info.name }}, {{ info_sys.country }}</h2>
             <div class="clouds_info">
                 <h3>Hari ini</h3>
