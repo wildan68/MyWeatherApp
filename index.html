@@ -25,7 +25,7 @@
             <!--<div v-if="not_found" class="not-found">
                 Tidak ditemukan
             </div> -->
-            <h2>{{ info.name }}, {{ info_sys.country }}</h2>
+            <h2>{{ info.name }}, {{ getCountry(info_sys.country.toLowerCase()) }} <img :src="'https://flagcdn.com/'+info_sys.country.toLowerCase()+'.svg'" height="24px"></h2>
             <div class="clouds_info">
                 <h3>Hari ini</h3>
                 <div class="clouds">

@@ -14,6 +14,7 @@ var root = new Vue({
         ip_data: null,
         ip_me: '',
         not_found: false,
+        country: null,
     },
     methods: {
         getWeather(city) {
@@ -33,6 +34,9 @@ var root = new Vue({
                 .finally(() => {
                     this.load_anim = false
                 })
+        },
+        getCountry(id) {
+            return eval('this.country.' + id);
         },
         toInt(x) {
             return Math.floor(x)
@@ -71,5 +75,17 @@ var root = new Vue({
                 this.errored = true
             })
             .finally(() => this.loading = false)
+        axios
+            .get('https://flagcdn.com/en/codes.json')
+            .then(response => {
+                this.country = response.data
+            })
+            .catch(error => {
+                console.log(error)
+                this.erored = true
+            })
+            .finally(() => {
+                this.load_anim = false
+            })
     },
 })
