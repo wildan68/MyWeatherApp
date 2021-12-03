@@ -61,10 +61,10 @@ var root = new Vue({
             })
             .finally(() => this.loading = false)
         axios
-            .get('http://www.geoplugin.net/json.gp?ip=' + ip)
+            .get('https://ipapi.co/' + this.ip_me + '/json/')
             .then(response => {
                 this.ip_data = response.data,
-                    this.getWeather(this.ip_data.geoplugin_city)
+                    this.getWeather(this.ip_data.city)
             })
             .catch(error => {
                 console.log(error)
