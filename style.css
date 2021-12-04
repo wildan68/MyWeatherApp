@@ -263,6 +263,9 @@ button {
     .forecast ul>li {
         margin-bottom: 2%;
     }
+    .forecast {
+        margin-top: 1em;
+    }
     .forecast ul li {
         width: 20%;
         height: 10em;
