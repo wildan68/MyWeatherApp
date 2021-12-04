@@ -5,7 +5,7 @@
         Weather App
     </title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -27,9 +27,9 @@
             </div> -->
             <h2>{{ info.name }}, {{ getCountry(info_sys.country.toLowerCase()) }} <img :src="'https://flagcdn.com/'+info_sys.country.toLowerCase()+'.svg'" height="24px"></h2>
             <div class="clouds_info">
-                <h3>Hari ini</h3>
+                <h3>Saat ini</h3>
                 <div class="clouds">
-                    <div v-for="i in info_weather">
+                    <div v-for="i in info_weather.slice(0, 1)">
                         <img src="img/panas.png" v-if="i.main == 'Clear'">
                         <img src="img/panas_berawan.png" v-if="i.main == 'Clouds'">
                         <img src="img/hujan_badai.png" v-if="i.main == 'Thunderstorm'">
@@ -38,6 +38,12 @@
                         <img src="img/salju.png" v-if="i.main == 'Snow'">
                         <img src="img/haze.png" v-if="i.main == 'Haze'">
                         <img src="img/haze.png" v-if="i.main == 'Fog'">
+                        <img src="img/haze.png" v-if="i.main == 'Mist'">
+                        <img src="img/haze.png" v-if="i.main == 'Smoke'">
+                        <img src="img/haze.png" v-if="i.main == 'Dust'">
+                        <img src="img/haze.png" v-if="i.main == 'Ash'">
+                        <img src="img/haze.png" v-if="i.main == 'Squall'">
+                        <img src="img/haze.png" v-if="i.main == 'Tornado'">
                     </div>
                 </div>
                 <div class="desc" v-for="i in info_weather">
@@ -47,11 +53,39 @@
                     {{ toInt(toCelcius(info_main.temp)) }}&deg; C
                 </div>
             </div>
+            <div class="forecast">
+                Prediksi Cuaca Rata-Rata Per Hari
+                <ul>
+                    <li v-for="(f, index) in forecast">
+                        <strong v-if="index == 0">Hari ini</strong>
+                        <strong v-if="index == 1">Besok</strong>
+                        <strong v-if="index > 1">{{ getDays(index) }}</strong>
+                        <div class=" img " v-for="w in f.weather.slice(0, 1) ">
+                            <img src="img/panas.png " v-if="w.main=='Clear' ">
+                            <img src="img/panas_berawan.png " v-if="w.main=='Clouds' ">
+                            <img src="img/hujan_badai.png " v-if="w.main=='Thunderstorm' ">
+                            <img src="img/hujan_ringan.png " v-if="w.main=='Drizzle' ">
+                            <img src="img/hujan.png " v-if="w.main=='Rain' ">
+                            <img src="img/salju.png " v-if="w.main=='Snow' ">
+                            <img src="img/haze.png " v-if="w.main=='Haze' ">
+                            <img src="img/haze.png " v-if="w.main=='Fog' ">
+                            <img src="img/haze.png " v-if="w.main=='Mist' ">
+                            <img src="img/haze.png " v-if="w.main=='Smoke' ">
+                            <img src="img/haze.png " v-if="w.main=='Dust' ">
+                            <img src="img/haze.png " v-if="w.main=='Ash' ">
+                            <img src="img/haze.png " v-if="w.main=='Squall' ">
+                            <img src="img/haze.png " v-if="w.main=='Tornado' ">
+                        </div>
+                        <p>{{ capitalize(f.weather[0].description) }}</p>
+                        <p class="temp ">{{ toInt(toCelcius(f.main.temp)) }}&deg; C</p>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="footer">
+        <div class="footer " id="footer ">
             Powered By @wldan.rzky_ | www.wildanrizky.tech
         </div>
     </div>
-    <script src="js/ajax.js"></script>
-    <script src="js/get_weather.js"></script>
+    <script src="js/ajax.js "></script>
+    <script src="js/get_weather.js "></script>
 </body>

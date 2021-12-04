@@ -1,6 +1,7 @@
 var root = new Vue({
     el: '#app',
     data: {
+        api_key: 'ea8535a0ff11a4e50f1a25f6cedfa299',
         info_main: null,
         info_sys: null,
         info_weather: null,
@@ -15,12 +16,22 @@ var root = new Vue({
         ip_me: '',
         not_found: false,
         country: null,
+        forecast: null,
+        days: [
+            'Minggu',
+            'Senin',
+            'Selasa',
+            'Rabu',
+            'Kamis',
+            "Jum'at",
+            'Sabtu',
+        ]
     },
     methods: {
         getWeather(city) {
             this.load_anim = true;
             axios
-                .get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&lang=id&appid=ea8535a0ff11a4e50f1a25f6cedfa299')
+                .get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&lang=id&appid=' + this.api_key)
                 .then(response => {
                     this.info_main = response.data.main
                     this.info_sys = response.data.sys
@@ -34,6 +45,29 @@ var root = new Vue({
                 .finally(() => {
                     this.load_anim = false
                 })
+        },
+        getForecast(city) {
+            axios
+                .get('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&lang=id&cnt=5&appid=' + this.api_key)
+                .then(response => {
+                    this.forecast = response.data.list
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.erored = true
+                })
+                .finally(() => {
+                    this.loading = false
+                })
+        },
+        getDays(i) {
+            var d = new Date().getDate() + 2 + i
+            if (d > 6) {
+                d = i - 1
+                return this.days[d]
+            } else {
+                return this.days[d]
+            }
         },
         getCountry(id) {
             return eval('this.country.' + id);
@@ -49,6 +83,7 @@ var root = new Vue({
         },
         searchCityBtn() {
             this.getWeather(this.searchCity)
+            this.getForecast(this.searchCity)
         }
     },
     mounted() {
@@ -68,7 +103,8 @@ var root = new Vue({
             .get('https://ipapi.co/' + this.ip_me + '/json/')
             .then(response => {
                 this.ip_data = response.data,
-                    this.getWeather(this.ip_data.city)
+                    this.getWeather(this.ip_data.city),
+                    this.getForecast(this.ip_data.city)
             })
             .catch(error => {
                 console.log(error)
@@ -87,5 +123,7 @@ var root = new Vue({
             .finally(() => {
                 this.load_anim = false
             })
+
+
     },
 })
