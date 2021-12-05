@@ -131,6 +131,5 @@ var root = new Vue({
                 this.load_anim = false
             })
 
-
     },
 })
