@@ -61,9 +61,16 @@ var root = new Vue({
                 })
         },
         getDays(i) {
-            var d = new Date().getDate() + 2 + i
+            /*var d = new Date().getDate() + 2 + i
             if (d > 6) {
                 d = i - 1
+                return this.days[new Date().getDay()]
+            } else {
+                return this.days[new Date().getDay()]
+            }*/
+            var d = new Date().getDay() + i
+            if (d > 6) {
+                d = 0 - 1
                 return this.days[d]
             } else {
                 return this.days[d]
