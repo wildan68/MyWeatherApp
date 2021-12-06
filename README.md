@@ -21,3 +21,7 @@ Simple Weather & Forecast App City ⛅<br>
 **Live Demo 🏷**
 <br>
 <a href="http://bit.ly/WldnWeatherApp">**Click Me!**</a>
+
+**CLI Repositories
+<br>
+<a href="https://github.com/wildan68/WeatherApp-VUE-CLI">Vue CLI Repositories</a>
