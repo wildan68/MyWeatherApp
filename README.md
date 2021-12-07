@@ -24,4 +24,4 @@ Simple Weather & Forecast App City ⛅<br>
 
 **CLI Repositories**
 <br>
-<a href="https://github.com/wildan68/WeatherApp-VUE-CLI">Vue CLI Repositories</a>
+<a href="https://github.com/wildan68/WeatherApp-VUE3">Vue 3 Repositories</a>
